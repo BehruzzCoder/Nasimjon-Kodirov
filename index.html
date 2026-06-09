@@ -386,6 +386,25 @@
         }
     </style>
 <base target="_blank">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '28241224402130937');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=28241224402130937&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+<base target="_blank">
 </head>
 <body>
     <!-- Animated particles -->
@@ -599,7 +618,7 @@
             }
 
             // Check if URL is still the placeholder
-            if (GOOGLE_SCRIPT_URL === '1') {
+            if (GOOGLE_SCRIPT_URL === 'SIZNING_GOOGLE_APPS_SCRIPT_URL_NGIZ') {
                 showToast('Iltimos, Google Apps Script URL ni kodga qo\'ying!');
                 return;
             }
@@ -637,6 +656,12 @@
                 formCard.style.display = 'none';
                 successMessage.style.display = 'block';
                 successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                // Meta Pixel - CompleteRegistration event
+                fbq('track', 'CompleteRegistration', {
+                    content_name: 'Kechki Biznes Uchrashuvi - Nasimjon Qodirov',
+                    status: true
+                });
 
             } catch (error) {
                 showToast('Xatolik yuz berdi. Iltimos, qayta urinib koring.')
