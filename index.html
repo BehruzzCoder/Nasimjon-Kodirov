@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kechki Biznes Uchrashuvi - Nasimjon Qodirov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 400;
+        }
+
+        .header .consultant-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-top: 4px;
+        }
+
+        /* Form card */
+        .form-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 24px 20px;
+            margin-top: 10px;
+        }
+
+        .form-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Form groups */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .form-group label .required {
+            color: #ff6b6b;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffd700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        .form-group select option {
+            background: #302b63;
+            color: #fff;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group .hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+        }
+
+        /* Radio group */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 14px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .radio-option:hover {
+            border-color: rgba(255, 215, 0, 0.4);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            accent-color: #ffd700;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message .icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .success-message h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .success-message p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(26, 26, 46, 0.3);
+            border-top-color: #1a1a2e;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        /* Error state */
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.2);
+        }
+
+        .error-text {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error .error-text {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .container {
+                padding: 10px 12px 30px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .form-card {
+                padding: 18px 14px;
+                border-radius: 20px;
+            }
+        }
+
+        /* Glow effect on focus */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #ff6b6b;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #2ecc71;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Animated particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">Naseem's Consulting</div>
+            <h1>Kechki Biznes Uchrashuvi</h1>
+            <p class="subtitle">Hammaga manfaatli bo'lishi uchun so'rovnoma</p>
+            <p class="consultant-name">Nasimjon Qodirov bilan</p>
+        </div>
+
+        <!-- Form -->
+        <div class="form-card" id="formCard">
+            <p class="form-title">Ro'yxatdan o'tish</p>
+            <form id="registrationForm">
+
+                <div class="form-group">
+                    <label>Familya Ism Sharfingiz <span class="required">*</span></label>
+                    <input type="text" name="fullName" placeholder="Masalan: Karimov Olimjon Olimovich" required>
+                    <span class="error-text">Iltimos, to'liq ismingizni kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon raqam va Telegram username <span class="required">*</span></label>
+                    <input type="text" name="contact" placeholder="+998 90 123 45 67 / @username" required>
+                    <span class="error-text">Iltimos, telefon raqam va Telegram username kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Kompaniya / Brend nomi <span class="required">*</span></label>
+                    <input type="text" name="company" placeholder="Kompaniya yoki brend nomi" required>
+                    <span class="error-text">Iltimos, kompaniya nomini kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Faoliyat boshlangan yil <span class="required">*</span></label>
+                    <input type="number" name="startYear" placeholder="Masalan: 2020" min="1950" max="2026" required>
+                    <span class="error-text">Iltimos, faoliyat boshlangan yilni kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Faoliyat turi <span class="required">*</span></label>
+                    <input type="text" name="activityType" placeholder="Masalan: Savdo-sotiq, Xizmat ko'rsatish..." required>
+                    <span class="error-text">Iltimos, faoliyat turini kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Mahsulot yoki xizmatingiz <span class="required">*</span></label>
+                    <input type="text" name="productService" placeholder="Sizning mahsulot yoki xizmatingiz" required>
+                    <span class="error-text">Iltimos, mahsulot yoki xizmatingizni kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Asosiy mijozingiz kimlar? <span class="required">*</span></label>
+                    <input type="text" name="mainClients" placeholder="Masalan: B2B, B2C, yoshlar..." required>
+                    <span class="error-text">Iltimos, asosiy mijozlaringizni kiriting</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Hozirda nechta xodimingiz bor? <span class="required">*</span></label>
+                    <select name="employees" required>
+                        <option value="" disabled selected>Tanlang</option>
+                        <option value="1-5">1 - 5</option>
+                        <option value="6-15">6 - 15</option>
+                        <option value="16-50">16 - 50</option>
+                        <option value="51-100">51 - 100</option>
+                        <option value="100+">100+</option>
+                    </select>
+                    <span class="error-text">Iltimos, xodimlar sonini tanlang</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Oylik aylanmangiz qancha? <span style="color:rgba(255,255,255,0.5)">(ixtiyoriy)</span></label>
+                    <input type="text" name="monthlyTurnover" placeholder="Masalan: 50 000 000 so'm">
+                    <p class="hint">Bu maydonni to'ldirish ixtiyoriy</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Export-Import qilishni xohlaysizmi? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="exportImport" value="Ha" id="exportYes" required>
+                            <label for="exportYes">Ha, albatta</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="exportImport" value="Yo'q" id="exportNo" required>
+                            <label for="exportNo">Yo'q, hozircha yo'q</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="exportImport" value="Kelajakda" id="exportFuture" required>
+                            <label for="exportFuture">Kelajakda o'ylab ko'raman</label>
+                        </div>
+                    </div>
+                    <span class="error-text">Iltimos, birini tanlang</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Bu uchrashuvdan kutuvtingiz qanday? <span style="color:rgba(255,255,255,0.5)">(ixtiyoriy)</span></label>
+                    <input type="text" name="expectations" placeholder="Nima kutmoqdasiz?">
+                </div>
+
+                <div class="form-group">
+                    <label>Qaysi savolingizga javob yoki qaysi muammoingizga yechim olmoqchisiz? <span class="required">*</span></label>
+                    <textarea name="questions" placeholder="Savollaringiz va muammolaringizni batafsil yozing..." required></textarea>
+                    <span class="error-text">Iltimos, savol yoki muammolaringizni kiriting</span>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="spinner" id="spinner"></span>
+                    <span id="btnText">Ro'yxatdan o'tish</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <div class="icon">✅</div>
+            <h2>Muvaffaqiyatli ro'yxatdan o'tdingiz!</h2>
+            <p>Ma'lumotlaringiz qabul qilindi. Tez orada siz bilan bog'lanamiz. Uchrashuvga tayyorlaning!</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Naseem's Consulting © 2026</p>
+            <p style="margin-top:4px;">mirbosidovbehruz1@gmail.com</p>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ===== GOOGLE APPS SCRIPT URL =====
+        // BU URLNI O'ZINGIZNING GOOGLE SHEETS APPS SCRIPT WEB APP URLINGIZ BILAN ALMASHTIRING
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXh6WZ3D6Jncy6bcd3eUI81I7gIVdJ1g-1FLNFCMtcoJWHulsiJYYntBrnZxOqp7RV/exec';
+        // ==================================
+
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Form handling
+        const form = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const spinner = document.getElementById('spinner');
+        const btnText = document.getElementById('btnText');
+        const formCard = document.getElementById('formCard');
+        const successMessage = document.getElementById('successMessage');
+        const toast = document.getElementById('toast');
+
+        function showToast(message, isSuccess = false) {
+            toast.textContent = message;
+            toast.className = 'toast' + (isSuccess ? ' success' : '');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        function setLoading(loading) {
+            submitBtn.disabled = loading;
+            spinner.style.display = loading ? 'inline-block' : 'none';
+            btnText.textContent = loading ? 'Yuborilmoqda...' : "Ro'yxatdan o'tish";
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = form.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                const group = field.closest('.form-group');
+                group.classList.remove('error');
+
+                if (field.type === 'radio') {
+                    const name = field.name;
+                    const checked = form.querySelector(`input[name="${name}"]:checked`);
+                    if (!checked) {
+                        group.classList.add('error');
+                        isValid = false;
+                    }
+                } else if (!field.value.trim()) {
+                    group.classList.add('error');
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+
+        // Remove error on input
+        form.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', function() {
+                this.closest('.form-group').classList.remove('error');
+            });
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                showToast('Iltimos, barcha majburiy maydonlarni toldiring');
+                return;
+            }
+
+            // Check if URL is still the placeholder
+            if (GOOGLE_SCRIPT_URL === '1') {
+                showToast('Iltimos, Google Apps Script URL ni kodga qo\'ying!');
+                return;
+            }
+
+            setLoading(true);
+
+            // Collect form data
+            const formData = {
+                fullName: form.fullName.value.trim(),
+                contact: form.contact.value.trim(),
+                company: form.company.value.trim(),
+                startYear: form.startYear.value.trim(),
+                activityType: form.activityType.value.trim(),
+                productService: form.productService.value.trim(),
+                mainClients: form.mainClients.value.trim(),
+                employees: form.employees.value,
+                monthlyTurnover: form.monthlyTurnover.value.trim() || '',
+                exportImport: form.querySelector('input[name="exportImport"]:checked').value,
+                expectations: form.expectations.value.trim() || '',
+                questions: form.questions.value.trim(),
+                timestamp: new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' })
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success (no-cors doesn't give us response, so we assume success)
+                formCard.style.display = 'none';
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                showToast('Xatolik yuz berdi. Iltimos, qayta urinib koring.')
+                setLoading(false);
+                console.error('Error:', error);
+            }
+        });
+
+        // Auto-format phone number
+        form.contact.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('998')) {
+                value = '+' + value;
+            }
+            if (value.length > 3 && value.startsWith('+998')) {
+                value = value.slice(0, 4) + ' ' + value.slice(4, 6) + ' ' + value.slice(6, 9) + ' ' + value.slice(9, 11) + ' ' + value.slice(11, 13);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
