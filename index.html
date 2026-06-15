@@ -6,24 +6,23 @@
     <title>Naseem's Consulting | Xalqaro Biznes Safar</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Facebook Pixel Code -->
+    <!-- Meta Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1021114630258932');
-        fbq('track', 'PageView');
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1021114630258932');
+    fbq('track', 'PageView');
     </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1021114630258932&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1021114630258932&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
         * {
@@ -773,7 +772,6 @@
     function openModal() {
         document.getElementById('modalOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
-        // Reset form and errors
         document.getElementById('registrationForm').reset();
         document.getElementById('phoneErrorMsg').style.display = 'none';
         document.getElementById('formContent').style.display = 'block';
@@ -790,7 +788,7 @@
     }
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
-    // Phone formatting: only digits, max 9, display with spaces
+    // Phone formatting
     const phoneInput = document.getElementById('phoneNumber');
     function formatPhoneWithSpaces(e) {
         let digits = e.target.value.replace(/\D/g, '');
@@ -804,7 +802,7 @@
     }
     phoneInput.addEventListener('input', formatPhoneWithSpaces);
 
-    // Google Apps Script URL (o‘z manzilingiz bilan almashtiring)
+    // Google Apps Script URL (o‘zingizning manzilingiz bilan almashtiring)
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzyZOIgQhFaz1XTJKl9VW7TLJc8rzjm5Qp14QgmFme8XKkcnnYuQwRYJSLS9BFV_EG_/exec';
 
     async function submitForm() {
@@ -814,7 +812,6 @@
         const industry = document.querySelector('select[name="industry"]').value;
         const errorDiv = document.getElementById('phoneErrorMsg');
 
-        // Validation
         if (!fullName) {
             alert("Iltimos, ism familyangizni kiriting.");
             return;
@@ -844,7 +841,6 @@
         };
 
         try {
-            // Send to Google Sheets via Web App
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
